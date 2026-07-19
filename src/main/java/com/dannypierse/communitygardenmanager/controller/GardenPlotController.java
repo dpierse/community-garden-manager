@@ -24,6 +24,30 @@ public class GardenPlotController {
         return gardenPlotService.getAllPlots();
     }
 
+    @GetMapping("/{id}")
+    public GardenPlot getPlotById(@PathVariable Long id) {
+        return gardenPlotService.getPlotById(id);
+    }
+
+    @GetMapping("/owner/{userId}")
+    public List<GardenPlot> getPlotsByOwner(@PathVariable Long userId) {
+        return gardenPlotService.getPlotsByOwner(userId);
+    }
+
+    @PutMapping("/{plotId}/assign/{userId}")
+    public GardenPlot assignPlot(
+            @PathVariable Long plotId,
+            @PathVariable Long userId) {
+
+        return gardenPlotService.assignPlotToUser(plotId, userId);
+    }
+
+    @PutMapping("/{plotId}/unassign")
+    public GardenPlot unassignPlot(@PathVariable Long plotId) {
+
+        return gardenPlotService.unassignPlot(plotId);
+    }
+
     @GetMapping("/create-test-plots")
     public String createTestPlots() {
 

@@ -40,4 +40,8 @@ public class UserController {
 
         return "User created successfully";
     }
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
 }

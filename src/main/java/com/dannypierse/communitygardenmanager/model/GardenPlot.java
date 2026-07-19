@@ -14,6 +14,10 @@ public class GardenPlot {
 
     private boolean available;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     public GardenPlot() {
     }
 
@@ -44,5 +48,13 @@ public class GardenPlot {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
