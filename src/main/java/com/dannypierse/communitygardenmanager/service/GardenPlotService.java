@@ -26,6 +26,10 @@ public class GardenPlotService {
         return gardenPlotRepository.findAll();
     }
 
+    public List<GardenPlot> getAvailablePlots() {
+        return gardenPlotRepository.findByAvailable(true);
+    }
+
     public GardenPlot getPlotById(Long id) {
         return gardenPlotRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Plot not found"));
@@ -66,5 +70,20 @@ public class GardenPlotService {
         plot.setAvailable(true);
 
         return gardenPlotRepository.save(plot);
+    }
+
+    public GardenPlot updatePlot(Long id, GardenPlot updatedPlot) {
+
+        GardenPlot plot = getPlotById(id);
+
+        plot.setPlotName(updatedPlot.getPlotName());
+        plot.setAvailable(updatedPlot.isAvailable());
+
+        return gardenPlotRepository.save(plot);
+    }
+    public void deletePlot(Long id) {
+        GardenPlot plot = getPlotById(id);
+
+        gardenPlotRepository.delete(plot);
     }
 }

@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface GardenPlotRepository extends JpaRepository<GardenPlot, Long> {
     List<GardenPlot> findByOwnerId(Long ownerId);
+    List<GardenPlot> findByAvailable(boolean available);
 
 }

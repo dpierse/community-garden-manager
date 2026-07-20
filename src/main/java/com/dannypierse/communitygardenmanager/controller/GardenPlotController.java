@@ -24,9 +24,30 @@ public class GardenPlotController {
         return gardenPlotService.getAllPlots();
     }
 
+    @GetMapping("/available")
+    public List<GardenPlot> getAvailablePlots() {
+        return gardenPlotService.getAvailablePlots();
+    }
+
     @GetMapping("/{id}")
     public GardenPlot getPlotById(@PathVariable Long id) {
         return gardenPlotService.getPlotById(id);
+    }
+
+    @PutMapping("/{id}")
+    public GardenPlot updatePlot(
+            @PathVariable Long id,
+            @RequestBody GardenPlot gardenPlot) {
+
+        return gardenPlotService.updatePlot(id, gardenPlot);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deletePlot(@PathVariable Long id) {
+
+        gardenPlotService.deletePlot(id);
+
+        return "Plot deleted successfully";
     }
 
     @GetMapping("/owner/{userId}")
