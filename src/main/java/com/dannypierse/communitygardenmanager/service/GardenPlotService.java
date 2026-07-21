@@ -48,6 +48,7 @@ public class GardenPlotService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         plot.setOwner(user);
+        plot.setAvailable(false);
 
         return gardenPlotRepository.save(plot);
     }
@@ -81,7 +82,9 @@ public class GardenPlotService {
 
         return gardenPlotRepository.save(plot);
     }
+
     public void deletePlot(Long id) {
+
         GardenPlot plot = getPlotById(id);
 
         gardenPlotRepository.delete(plot);
